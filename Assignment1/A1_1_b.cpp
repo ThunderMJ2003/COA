@@ -2,10 +2,17 @@
 using namespace std;
 
 long long fibo(int n){
-    if ((n==1) || (n==2)){ //Assuming 1st fibonacci number is 0, 2nd is 1, and so on
+    if ((n==1) || (n==2)){
         return (n-1);
     }
-    return fibo(n-1) + fibo(n-2);
+    long long a = 0, b = 1;
+    long long c = a + b;
+    for (int i=0; i<(n-2); i++){
+        c = a + b;
+        a = b;
+        b = c;
+    }
+    return c;
 }
 
 int main(){
