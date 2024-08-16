@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <windows.h>
 using namespace std;
 
 vector<vector<int>> matmult(vector<vector<int>> A, vector<vector<int>> B){
@@ -17,6 +18,10 @@ vector<vector<int>> matmult(vector<vector<int>> A, vector<vector<int>> B){
 }
 
 int main(){
+    LARGE_INTEGER meat_freq, exec_freq;
+    LARGE_INTEGER meat_start, meat_end, exec_start, exec_end;
+    QueryPerformanceFrequency(&exec_freq);
+    QueryPerformanceCounter(&exec_start);
     srand(static_cast<unsigned>(time(0)));
     int n = 256;
     vector<vector<int>> A(n, vector<int>(n));
@@ -27,27 +32,14 @@ int main(){
             B[i][j] = (rand()%10);
         }
     }
+    QueryPerformanceFrequency(&meat_freq);
+    QueryPerformanceCounter(&meat_start);
     vector<vector<int>> C = matmult(A, B);
-    printf("A = \n");
-    for (int i=0; i<n; i++){
-        for (int j=0; j<n; j++){
-            printf("%d ", A[i][j]);
-        }
-        printf("\n");
-    }
-    printf("B = \n");
-    for (int i=0; i<n; i++){
-        for (int j=0; j<n; j++){
-            printf("%d ", B[i][j]);
-        }
-        printf("\n");
-    }
-    printf("A = \n");
-    for (int i=0; i<n; i++){
-        for (int j=0; j<n; j++){
-            printf("%d ", C[i][j]);
-        }
-        printf("\n");
-    }
+    QueryPerformanceCounter(&meat_end);
+    double meat_time = static_cast<double>(meat_end.QuadPart - meat_start.QuadPart) / meat_freq.QuadPart;
+    QueryPerformanceCounter(&exec_end);
+    double exec_time = static_cast<double>(exec_end.QuadPart - exec_start.QuadPart) / exec_freq.QuadPart;
+    cout << "Meat Time " << meat_time*1000000 << " us" << endl;
+    cout << "Execution Time: " << exec_time*1000000 << " us" << endl;
     return 0;
 }
