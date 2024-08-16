@@ -1,12 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<double>> matmult(vector<vector<double>> A, vector<vector<double>> B){
+vector<vector<int>> matmult(vector<vector<int>> A, vector<vector<int>> B){
     int n = A.size();
-    vector<vector<double>> C(n, vector<double>(n));
+    vector<vector<int>> C(n, vector<int>(n));
     for (int i=0; i<n; i++){
         for (int j=0; j<n; j++){
-            double curr_el = 0.0;
+            int curr_el = 0;
             for (int k=0; k<n; k++){
                 curr_el += A[i][k] * B[k][j];
             }
@@ -18,34 +18,34 @@ vector<vector<double>> matmult(vector<vector<double>> A, vector<vector<double>> 
 
 int main(){
     srand(static_cast<unsigned>(time(0)));
-    int n = 3;
-    vector<vector<double>> A(n, vector<double>(n));
-    vector<vector<double>> B(n, vector<double>(n));
+    int n = 128;
+    vector<vector<int>> A(n, vector<int>(n));
+    vector<vector<int>> B(n, vector<int>(n));
     for (int i=0; i<n; i++){
         for (int j=0; j<n; j++){
-            A[i][j] = (rand()/(double)RAND_MAX)*10.0; //Initializing matrix with random number in [0, 10)
-            B[i][j] = (rand()/(double)RAND_MAX)*10.0;
+            A[i][j] = (rand()%10); //Initializing matrix with random single digit number
+            B[i][j] = (rand()%10);
         }
     }
-    vector<vector<double>> C = matmult(A, B);
+    vector<vector<int>> C = matmult(A, B);
     printf("A = \n");
     for (int i=0; i<n; i++){
         for (int j=0; j<n; j++){
-            printf("%f ", A[i][j]);
+            printf("%d ", A[i][j]);
         }
         printf("\n");
     }
     printf("B = \n");
     for (int i=0; i<n; i++){
         for (int j=0; j<n; j++){
-            printf("%f ", B[i][j]);
+            printf("%d ", B[i][j]);
         }
         printf("\n");
     }
     printf("A = \n");
     for (int i=0; i<n; i++){
         for (int j=0; j<n; j++){
-            printf("%f ", C[i][j]);
+            printf("%d ", C[i][j]);
         }
         printf("\n");
     }

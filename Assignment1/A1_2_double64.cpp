@@ -18,7 +18,7 @@ vector<vector<double>> matmult(vector<vector<double>> A, vector<vector<double>> 
 
 int main(){
     srand(static_cast<unsigned>(time(0)));
-    int n = 3;
+    int n = 64;
     vector<vector<double>> A(n, vector<double>(n));
     vector<vector<double>> B(n, vector<double>(n));
     for (int i=0; i<n; i++){
