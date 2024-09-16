@@ -18,6 +18,7 @@ sum_loop:
     ADD AX, BX              ;adding BX (new number) to AX (sum)
     ADD SI, 2               ;moving to the next number (each number is 2 bytes)
     LOOP sum_loop           ;looping until CX (count) becomes 0
+    
     MOV [sum], AX           ;moving the total sum into [sum]
     MOV CX, [count]         ;loading count (15) into CX to use as divisor
     XOR DX, DX              ;clearing DX for division
