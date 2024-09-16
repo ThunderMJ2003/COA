@@ -4,7 +4,7 @@ section .data
     fin dw 0            ;to store the product
 
 section .text
-    global _start
+    ORG 0x100           ;setting origin
 
 _start:
     MOV AX, [num1]      ;loading num1 into AX

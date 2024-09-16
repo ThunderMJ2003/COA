@@ -7,7 +7,7 @@ section .bss
     temp resw 1         ;temporary variable to store GCD
 
 section .text
-    global _start
+    ORG 0x100           ;setting origin
 
 _start:
     MOV AX, [num1]      ;loading num1 into AX

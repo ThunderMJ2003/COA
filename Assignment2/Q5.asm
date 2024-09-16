@@ -6,7 +6,7 @@ section .data
     index dw 0                  ;to store index if found
 
 section .text
-    global _start
+    ORG 0x100                   ;setting origin
 
 _start:
     MOV SI, 0                   ;SI is used as the index, starting from index 0
